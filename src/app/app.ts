@@ -5,11 +5,12 @@ import { TitleCasePipe } from '@angular/common';
 import { NgFor } from '@angular/common';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,Header,TitleCasePipe,NgFor, ReactiveFormsModule],
+  imports: [RouterOutlet,Header,TitleCasePipe,NgFor, ReactiveFormsModule,HttpClientModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
