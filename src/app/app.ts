@@ -6,6 +6,8 @@ import { NgFor } from '@angular/common';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Employee } from './models/employee.model';
+import { Service } from './service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,8 @@ export class App implements OnInit, AfterViewInit {
   protected title = 'employeecrud';
 
   employeeForm: FormGroup
+  employees: Employee[];
+  employeesToDisplay: Employee[];
 
   educationOptions=[
     '10th Pass',
@@ -28,8 +32,10 @@ export class App implements OnInit, AfterViewInit {
     'phD'
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private service: Service) {
     this.employeeForm = fb.group({});
+    this.employees = [];
+    this.employeesToDisplay = this.employees;
   }
 
   ngOnInit(): void {
@@ -42,6 +48,10 @@ export class App implements OnInit, AfterViewInit {
       company: this.fb.control(''),
       jobExperience: this.fb.control(''),
       salary: this.fb.control('')
+    })
+
+    this.service.getEmployees().subscribe(res =>{
+      console.log(res);
     })
   }
 
